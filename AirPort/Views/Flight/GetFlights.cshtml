@@ -1,0 +1,64 @@
+﻿@model IEnumerable<AirPort.Models.Entities.Flight>
+
+@{
+    ViewData["Title"] = "GetFlights";
+}
+
+<h1>GetFlights</h1>
+
+<p>
+    <a asp-action="AddFlight" class="btn btn-outline-primary">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FlightNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DepartureCity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ArrivalCity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Schedule)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Airline)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FlightNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DepartureCity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ArrivalCity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Schedule)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Airline.AirlineID)
+            </td>
+            <td>
+                <a asp-action="EditFlight" asp-route-id="@item.FlightId" class="btn btn-outline-dark">Edit</a> |
+                <a asp-action="RemoveFlight" asp-route-id="@item.FlightId" class="btn btn-outline-danger">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

@@ -1,0 +1,46 @@
+﻿@model IEnumerable<AirPort.Models.Entities.Passenger>
+
+@{
+    ViewData["Title"] = "GetPassengers";
+}
+
+<h1>GetPassengers</h1>
+
+<p>
+    <a asp-action="AddPassenger" class="btn btn-outline-primary">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.PassengerName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ContactInfo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NationalID)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.PassengerName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ContactInfo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NationalID)
+            </td>
+            <td>
+                <a asp-action="EditPassenger" asp-route-id="@item.PassengerID" class="btn btn-outline-dark">Edit</a> |
+                <a asp-action="RemovePassenger" asp-route-id="@item.PassengerID" class="btn btn-outline-danger">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

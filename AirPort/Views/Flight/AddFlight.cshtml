@@ -1,0 +1,68 @@
+﻿@model AirPort.Models.ViewModels.FlightViewModel
+
+@{
+    ViewData["Title"] = "AddFlight";
+}
+
+<h1>AddFlight</h1>
+
+<h4>Flight</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="AddFlight">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="FlightNumber" class="control-label"></label>
+                <input asp-for="FlightNumber" class="form-control" />
+                <span asp-validation-for="FlightNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DepartureCity" class="control-label"></label>
+                <input asp-for="DepartureCity" class="form-control" />
+                <span asp-validation-for="DepartureCity" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ArrivalCity" class="control-label"></label>
+                <input asp-for="ArrivalCity" class="form-control" />
+                <span asp-validation-for="ArrivalCity" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Schedule" class="control-label"></label>
+                <input asp-for="Schedule" class="form-control" />
+                <span asp-validation-for="Schedule" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Status" class="control-label"></label>
+                <select asp-for="Status" class="form-control" >
+                    <option>Confirmed</option>
+                    <option>Cancelled</option>
+                </select>
+                <span asp-validation-for="Status" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AirlineID" class="control-label"></label>
+                <select asp-for="AirlineID" class ="form-control" asp-items="ViewBag.AirlineID">
+
+                    @foreach(var item in Model.Airlines)
+                    {
+                        <option value="@item.AirlineID">@item.AirlineName</option>
+                    }
+
+
+                </select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
